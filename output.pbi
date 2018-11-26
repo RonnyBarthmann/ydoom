@@ -126,6 +126,24 @@ EndProcedure
 
 Procedure OutputStuff(OutputDriver)
   Define success.l
+  If MouseSupport
+    Select OutputDriver
+      Case #DOOM_OutputDriver_ImageGadget, #DOOM_OutputDriver_Window, #DOOM_OutputDriver_WindowedScreen, #DOOM_OutputDriver_CanvasGadget
+        If KeyboardPushed(#PB_Key_Tab)
+          Repeat
+            ExamineKeyboard()
+            If KeyboardReleased(#PB_Key_Tab)
+              MouseLook = 1 - MouseLook
+              Break
+            EndIf
+            Delay(10)
+          ForEver
+          ReleaseMouse(1-MouseLook)
+        EndIf
+      Case #DOOM_OutputDriver_Fullscreen
+        ReleaseMouse(1-IsScreenActive())
+    EndSelect
+  EndIf
   Repeat
     Select WindowEvent()
       Case #PB_Event_SizeWindow
@@ -169,6 +187,7 @@ EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 15
+; CursorPosition = 126
+; FirstLine = 115
 ; Folding = -
 ; EnableXP

@@ -94,23 +94,46 @@ EndProcedure
 
 Procedure _DrawFlat2(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,z.d,tex,cell)
   Define aTriHigh,aLeftStep.d,aRightStep.d,vTriHigh,vLeftStep.d,vRightStep.d
-  Define ox1,oy1,ox2,oy2,ox3,oy3,TriMode,i,oxL.d,oxR.d,ox4,oy4,oy
+  Define ox1,oy1,ox2,oy2,ox3,oy3,TriMode,i,oxL.d,oxR.d,ox4,oy4,oy,behindCam
   If y1 > 0
     ox1 = ( ( x1 * ( height / 2 ) ) / y1 ) + ( width / 2 )
     oy1 = ( ( z * ( height / 2 ) ) / y1 ) + ( height / 2 )
   Else
-    ProcedureReturn
+    behindCam = 1
   EndIf
   If y2 > 0
     ox2 = ( ( x2 * ( height / 2 ) ) / y2 ) + ( width / 2 )
     oy2 = ( ( z * ( height / 2 ) ) / y2 ) + ( height / 2 )
   Else
-    ProcedureReturn
+    behindCam = 1
   EndIf
   If y3 > 0
     ox3 = ( ( x3 * ( height / 2 ) ) / y3 ) + ( width / 2 )
     oy3 = ( ( z * ( height / 2 ) ) / y3 ) + ( height / 2 )
   Else
+    behindCam = 1
+  EndIf
+  If DebugModeFlat
+    If y1 > 0 And y2 > 0
+      LineXY(ox1,oy1,ox2,oy2,255)
+    EndIf
+    If y2 > 0 And y3 > 0
+      LineXY(ox2,oy2,ox3,oy3,255)
+    EndIf
+    If y3 > 0 And y1 > 0
+      LineXY(ox3,oy3,ox1,oy1,255)
+    EndIf
+    If y1 > 0
+      Box(ox1-2,oy1-2,5,5,255)
+    EndIf
+    If y1 > 0
+      Box(ox2-2,oy2-2,5,5,255)
+    EndIf
+    If y1 > 0
+      Box(ox3-2,oy3-2,5,5,255)
+    EndIf
+  EndIf
+  If behindCam
     ProcedureReturn
   EndIf
   If oy1 > oy2
@@ -124,11 +147,6 @@ Procedure _DrawFlat2(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,z.d,tex,cell)
   If oy2 > oy3
     Swap ox2, ox3
     Swap oy2, oy3
-  EndIf
-  If DebugMode
-    Box(ox1-2,oy1-2,5,5,255)
-    Box(ox2-2,oy2-2,5,5,255)
-    Box(ox3-2,oy3-2,5,5,255)
   EndIf
   If oy1 = oy3
     TriMode = 3      ; Line
@@ -198,6 +216,26 @@ Procedure _DrawFlat2(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,z.d,tex,cell)
       Next
     Case 3
   EndSelect
+  If DebugModeFlat
+    If y1 > 0 And y2 > 0
+      LineXY(ox1,oy1,ox2,oy2,255)
+    EndIf
+    If y2 > 0 And y3 > 0
+      LineXY(ox2,oy2,ox3,oy3,255)
+    EndIf
+    If y3 > 0 And y1 > 0
+      LineXY(ox3,oy3,ox1,oy1,255)
+    EndIf
+    If y1 > 0
+      Box(ox1-2,oy1-2,5,5,255)
+    EndIf
+    If y1 > 0
+      Box(ox2-2,oy2-2,5,5,255)
+    EndIf
+    If y1 > 0
+      Box(ox3-2,oy3-2,5,5,255)
+    EndIf
+  EndIf
 EndProcedure
 
 Procedure IfLineVis(x1.d,y1.d,x2.d,y2.d)
@@ -242,19 +280,31 @@ Procedure _DrawWall2(x1.d,y1.d,x2.d,y2.d,z.d,h.d,tex)
   ox2 = ( ( x2 * ( height / 2 ) ) / y2 ) + ( width / 2 )
   oy2 = ( ( z * ( height / 2 ) ) / y2 ) + ( height / 2 )
   oh2 =   ( h * ( height / 2 ) ) / y2
-  If DebugMode
-    Line(ox1,oy1,1,-oh1,255)
-    Line(ox2,oy2,1,-oh2,255)
+  If DebugModeWall
+    If y1 > 0
+      Box(ox1-2,oy1-2,5,5,255)
+      Box(ox1-2,oy1-oh1-2,5,5,255)
+      Line(ox1,oy1,1,-oh1,255)
+    EndIf
+    If y2 > 0
+      Box(ox2-2,oy2-2,5,5,255)
+      Box(ox2-2,oy2-oh2-2,5,5,255)
+      Line(ox2,oy2,1,-oh2,255)
+    EndIf
+    If y1 > 0 And y2 > 0
+      LineXY(ox1,oy1,ox2,oy2,255)
+      LineXY(ox1,oy1-oh1,ox2,oy2-oh2,255)
+    EndIf
   EndIf
   If ox1 = ox2
     ProcedureReturn
   EndIf
   reverse = 0
   If ox1 > ox2
-    Swap ox1, ox2
-    Swap oy1, oy2
-    Swap oh1, oh2
-    reverse = 1
+;     Swap ox1, ox2
+;     Swap oy1, oy2
+;     Swap oh1, oh2
+;     reverse = 1
     ProcedureReturn ; Draw only one side
   EndIf
   yWallStep = ( oy2 - oy1 ) / ( ox2 - ox1 )
@@ -274,6 +324,80 @@ Procedure _DrawWall2(x1.d,y1.d,x2.d,y2.d,z.d,h.d,tex)
     oh + hWallStep
     tx + xTexStep
   Next
+  If DebugModeWall
+    If y1 > 0
+      Box(ox1-2,oy1-2,5,5,255)
+      Box(ox1-2,oy1-oh1-2,5,5,255)
+      Line(ox1,oy1,1,-oh1,255)
+    EndIf
+    If y2 > 0
+      Box(ox2-2,oy2-2,5,5,255)
+      Box(ox2-2,oy2-oh2-2,5,5,255)
+      Line(ox2,oy2,1,-oh2,255)
+    EndIf
+    If y1 > 0 And y2 > 0
+      LineXY(ox1,oy1,ox2,oy2,255)
+      LineXY(ox1,oy1-oh1,ox2,oy2-oh2,255)
+    EndIf
+  EndIf
+EndProcedure
+
+Procedure _DrawSprite2(x.d,y.d,z.d,tex,rot=0)
+  Define ox,oy,ox1,oy1,ox2,oy2,ox3,oy3,ox4,oy4,sScale.d,sStep.d,xPos.d,yPos.d
+  If y > 0
+    ox = ( ( x * ( height / 2 ) ) / y ) + ( width / 2 )
+    oy = ( ( z * ( height / 2 ) ) / y ) + ( height / 2 )
+    sScale = 1 / y : sStep = y
+    ox1 = ox - GetTexX(tex)*sScale*(height/2)
+    oy1 = oy - GetTexY(tex)*sScale*(height/2)
+    ox2 = ox1 + ( GetTexWigth(tex)*sScale*(height/2) )
+    oy2 = oy1
+    ox3 = ox1 + ( GetTexWigth(tex)*sScale*(height/2) )
+    oy3 = oy1 + ( GetTexHeight(tex)*sScale*(height/2) )
+    ox4 = ox1
+    oy4 = oy1 + ( GetTexHeight(tex)*sScale*(height/2) )
+    If DebugModeSprite
+      Box(ox1-2,oy1-2,5,5,255)
+      Box(ox2-2,oy2-2,5,5,255)
+      Box(ox3-2,oy3-2,5,5,255)
+      Box(ox4-2,oy4-2,5,5,255)
+      LineXY(ox1,oy1,ox2,oy2,255)
+      LineXY(ox2,oy2,ox3,oy3,255)
+      LineXY(ox3,oy3,ox4,oy4,255)
+      LineXY(ox4,oy4,ox1,oy1,255)
+    EndIf
+    
+    If RenderSpriteTex
+      If ox1 < 0 : ox1 = 0 : EndIf
+      If ox1 > width-1 : ProcedureReturn : EndIf
+      If ox2 < 0 : ProcedureReturn : EndIf
+      If ox2 > width-1 : ox2 = width-1 : EndIf
+      If ox3 < 0 : ProcedureReturn : EndIf
+      If ox3 > width-1 : ox3 = width-1 : EndIf
+      If ox4 < 0 : ox4 = 0 : EndIf
+      If ox4 > width-1 : ProcedureReturn : EndIf
+      If oy1 < 0 : oy1 = 0 : EndIf
+      If oy1 > height-1 : ProcedureReturn : EndIf
+      If oy2 < 0 : oy2 = 0 : EndIf
+      If oy2 > height-1 : ProcedureReturn : EndIf
+      If oy3 < 0 : ProcedureReturn : EndIf
+      If oy3 > height-1 : oy1 = height-1 : EndIf
+      If oy4 < 0 : ProcedureReturn : EndIf
+      If oy4 > height-1 : oy1 = height-1 : EndIf
+      
+      xPos = 0
+      For ox = ox1 To ox2
+        yPos = 0
+        For oy = oy1 To oy4
+          Plot(ox,oy,GetTexPixel(tex,xPos,yPos,rot))
+          yPos + sStep
+        Next
+        xPos + sStep
+      Next
+    Else
+      Box(ox1,oy1,ox3-ox1,oy3-oy1,GetTexPixel(tex,0,0))
+    EndIf
+  EndIf
 EndProcedure
 
 Procedure _DrawFlat(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,z.d,tex,cell)
@@ -292,6 +416,10 @@ Procedure _DrawWall(x1.d,y1.d,x2.d,y2.d,z.d,h.d,tex)
   _DrawWall2(x1,y1,x2,y2,z,h,tex)
 EndProcedure
 
+Procedure _DrawSprite(x.d,y.d,z.d,tex,rot=0)
+  _DrawSprite2(x,y,z,tex,rot)
+EndProcedure
+
 Procedure DrawCelling(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,x4.d,y4.d,z.d,tex)
   _DrawFlat(x4,y4,x1,y1,x2,y2,z,tex,1)
   _DrawFlat(x2,y2,x3,y3,x4,y4,z,tex,1)
@@ -306,9 +434,13 @@ Procedure DrawWall(x1.d,y1.d,x2.d,y2.d,z.d,h.d,tex)
   _DrawWall(x1,y1,x2,y2,z,h,tex)
 EndProcedure
 
+Procedure DrawSprite(x.d,y.d,z.d,tex,rot=0)
+  _DrawSprite(x,y,z,tex,rot)
+EndProcedure
+
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 222
-; FirstLine = 195
-; Folding = --
+; CursorPosition = 357
+; FirstLine = 322
+; Folding = ---
 ; EnableXP

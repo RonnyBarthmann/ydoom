@@ -1,6 +1,6 @@
 ﻿XIncludeFile "math.pbi"
 
-Global Dim ImageMemory(255,4)
+Global Dim ImageMemory(255,6)
 
 Procedure LoadTex(num,name$)
   Define y,x,success
@@ -18,6 +18,8 @@ Procedure LoadTex(num,name$)
             PokeL(ImageMemory(num,3)+ImageMemory(num,1)*y*4+x*4,Point(x,y))
           Next
         Next
+        ImageMemory(num,4) = ImageWidth(1)/2
+        ImageMemory(num,5) = ImageHeight(1)
         PrintN("done")
         success = 1
       EndIf
@@ -36,7 +38,7 @@ Procedure DummyTex(num,size,c1,c2)
   Define x,y
   Print("Create Texture ... ")
   ImageMemory(num,0) = 0
-  ImageMemory(num,3) = AllocateMemory(256*256*4)
+  ImageMemory(num,3) = AllocateMemory(size*size*4)
   If ImageMemory(num,3)
     ImageMemory(num,0) = 1
     ImageMemory(num,1) = size
@@ -61,6 +63,8 @@ Procedure DummyTex(num,size,c1,c2)
         PokeL(ImageMemory(num,3)+ImageMemory(num,1)*y*4+x*4,c2)
       Next
     Next
+    ImageMemory(num,4) = size/2
+    ImageMemory(num,5) = size
     PrintN("done")
     ProcedureReturn 1
   Else
@@ -87,9 +91,26 @@ Procedure GetTexPixel(tex,x,y,rot=0)
     EndIf
   EndIf
 EndProcedure
+  
+Procedure GetTexWigth(tex)
+  ProcedureReturn ImageMemory(tex,1)
+EndProcedure
+  
+Procedure GetTexHeight(tex)
+  ProcedureReturn ImageMemory(tex,2)
+EndProcedure
+  
+Procedure GetTexX(tex)
+  ProcedureReturn ImageMemory(tex,4)
+EndProcedure
+  
+Procedure GetTexY(tex)
+  ProcedureReturn ImageMemory(tex,5)
+EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 35
-; Folding = -
+; CursorPosition = 40
+; FirstLine = 32
+; Folding = --
 ; EnableXP

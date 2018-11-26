@@ -1,18 +1,31 @@
 ﻿Global width = 640
 Global height = 400
 Global px.f,py.f,ph.f=100,pa.f
+Global MouseSupport = 1
+Global MouseFactor.d=0.5
 Global OutputDriver = 2 ; 0 = ImageGadget
                          ; 1 = WindowOutput
                          ; 2 = WindowedScreen ( stable / default )
                          ; 3 = Fullscreen
                          ; 4 = FBdev ( Z:\dev\fb0 ) ( not implimented yet )
                          ; 5 = CanvasGadget
-Global DebugMode = 0
-Global RenderWallTex = 0
-Global RenderFlatTex = 0
+Global DebugMode = 1
+Global RenderTex = 0
 Global RenderFailsafe = 1
 EnableExplicit
 
+If DebugMode
+  Global DebugModeWall = 1
+  Global DebugModeFlat = 1
+  Global DebugModeSprite = 1
+EndIf
+If RenderTex
+  Global RenderWallTex = 1
+  Global RenderFlatTex = 1
+  Global RenderSpriteTex = 1
+EndIf
+
+Global MouseLook = 1
 XIncludeFile "output.pbi"
 XIncludeFile "textures.pbi"
 XIncludeFile "render.pbi"
@@ -22,6 +35,9 @@ XIncludeFile "map.pbi"
 OpenConsole()
 UsePNGImageDecoder()
 InitKeyboard()
+If MouseSupport
+  InitMouse()
+EndIf
 
 Define eTime, time, delay
 
@@ -57,6 +73,9 @@ Repeat
   StopOutputDrawing(OutputDriver)
   
   ExamineKeyboard()
+  If MouseSupport
+    ExamineMouse()
+  EndIf
   If KeyboardPushed(#PB_Key_A)
     If KeyboardPushed(#PB_Key_E)
       py - Sin(Radian(pa))*delay/2
@@ -99,6 +118,9 @@ Repeat
   If KeyboardPushed(#PB_Key_Right)
     pa - delay/10
   EndIf
+  If MouseSupport
+    pa - MouseDeltaX()*MouseFactor
+  EndIf
   If KeyboardPushed(#PB_Key_Escape)
     End
   EndIf
@@ -107,6 +129,5 @@ ForEver
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 42
-; FirstLine = 14
+; CursorPosition = 27
 ; EnableXP

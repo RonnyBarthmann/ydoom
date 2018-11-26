@@ -46,6 +46,16 @@ Procedure DrawWallPOV(x1.d,y1.d,x2.d,y2.d,h.d,z.d,tex)
   DrawWall(ox1,oy1,ox2,oy2,z,h,tex)
 EndProcedure
 
+Procedure DrawSpritePOV(x.d,y.d,z.d,tex,rot=0)
+  Define ox.d,oy.d
+  x - px : y - py
+  
+  ox = 0 + ( x * CosR(Int(PageF(0-pa,0,360)*1000)) ) - ( y * SinR(Int(PageF(0-pa,0,360)*1000)) )
+  oy = 0 + ( y * CosR(Int(PageF(0-pa,0,360)*1000)) ) + ( x * SinR(Int(PageF(0-pa,0,360)*1000)) )
+  
+  DrawSprite(ox,oy,z,tex,rot)
+EndProcedure
+
 Procedure IfLineVisPOV(x1.d,y1.d,x2.d,y2.d)
   Define ox1.d,oy1.d,ox2.d,oy2.d
   x1 - px : x2 - px : y1 - py : y2 - py
@@ -60,7 +70,7 @@ EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 60
-; FirstLine = 3
+; CursorPosition = 50
+; FirstLine = 13
 ; Folding = -
 ; EnableXP
