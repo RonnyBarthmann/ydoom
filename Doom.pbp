@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.62 (Windows - x86)">
+  <section name="config">
+    <options closefiles="1" openmode="0" name="Doom"/>
+  </section>
+  <section name="data">
+    <explorer view="C:\users\Public\Application Data\PureBasic\Examples\" pattern="0"/>
+    <log show="1"/>
+    <lastopen date="2018-11-23 04:37" user="knoppix" host="Microknoppix"/>
+  </section>
+  <section name="files">
+    <file name="main.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="9e7589daec8ebf3a618f6e13a055cc01"/>
+    </file>
+    <file name="map.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="b3af39bdf60bee2cd27126939c876699"/>
+    </file>
+    <file name="math.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="a3f98fea1f8a6c6e9221d86c8c487478"/>
+    </file>
+    <file name="output.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="15f6ed3a8d7ec4e5d9c0f0d3cfc224f2"/>
+    </file>
+    <file name="player.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="7d774ffadae3f00e5dbeb635db2c9d39"/>
+    </file>
+    <file name="render.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="a32015bf48cc5e6ed0304f93d075358d"/>
+    </file>
+    <file name="renderMath.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="73b4a01714c3d076a3acfdfd10861fa6"/>
+    </file>
+    <file name="test.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="6ba93fa6db892c9be8ee4dd614b80a52"/>
+    </file>
+    <file name="textures.pbi">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
+      <fingerprint md5="3431d66f429c7719b392b23fe485d0d5"/>
+    </file>
+  </section>
+  <section name="targets">
+    <target name="Standard-Ziel" enabled="1" default="1">
+      <inputfile value="main.pb"/>
+      <outputfile value="pbdoom.exe"/>
+      <options asm="1" thread="1"/>
+      <debugger custom="1" type="standalone"/>
+    </target>
+  </section>
+</project>
