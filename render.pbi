@@ -201,20 +201,32 @@ Procedure _DrawFlat2(x1.d,y1.d,x2.d,y2.d,x3.d,y3.d,z.d,tex,cell)
 EndProcedure
 
 Procedure IfLineVis(x1.d,y1.d,x2.d,y2.d)
-  Define ox1,ox2
+  Define ox1,ox2,y1end,y2end
   If y1 > 0
     ox1 = ( ( x1 * ( height / 2 ) ) / y1 ) + ( width / 2 )
   Else
-    ProcedureReturn 0
+    y1end = 1
   EndIf
   If y2 > 0
     ox2 = ( ( x2 * ( height / 2 ) ) / y2 ) + ( width / 2 )
   Else
-    ProcedureReturn 0
+    y2end = 1
   EndIf
-  If ox2 > ox1
-    If ox2 > 0
+  If y1end+y2end = 0
+    If ox2 > ox1
+      If ox2 > 0
+        If ox1 < width
+          ProcedureReturn 1
+        EndIf
+      EndIf
+    EndIf
+  ElseIf y1end+y2end = 1
+    If y1end = 0
       If ox1 < width
+        ProcedureReturn 1
+      EndIf
+    ElseIf y2end = 0
+      If ox2 > 0
         ProcedureReturn 1
       EndIf
     EndIf
@@ -296,7 +308,7 @@ EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 88
-; FirstLine = 41
+; CursorPosition = 222
+; FirstLine = 195
 ; Folding = --
 ; EnableXP

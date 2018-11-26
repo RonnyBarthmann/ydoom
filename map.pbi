@@ -97,17 +97,11 @@ EndProcedure
 Procedure getNearestRoom(init)
   Define i,dist.d=99999999,room,a.d,b.d,c.d
   For i = init To Rooms-1
-    a = RoomData(i)\x1-px : b = RoomData(i)\y1-py
-    If a<0 : a=0-a : EndIf : If b<0 : b=0-b : EndIf
-    c=Sqr((a*a)+(b*b)) : If c<dist : room=i : dist=c : EndIf
-    a = RoomData(i)\x2-px : b = RoomData(i)\y2-py
-    If a<0 : a=0-a : EndIf : If b<0 : b=0-b : EndIf
-    c=Sqr((a*a)+(b*b)) : If c<dist : room=i : dist=c : EndIf
-    a = RoomData(i)\x3-px : b = RoomData(i)\y3-py
-    If a<0 : a=0-a : EndIf : If b<0 : b=0-b : EndIf
-    c=Sqr((a*a)+(b*b)) : If c<dist : room=i : dist=c : EndIf
-    a = RoomData(i)\x4-px : b = RoomData(i)\y4-py
-    If a<0 : a=0-a : EndIf : If b<0 : b=0-b : EndIf
+    a=RoomData(i)\x1 : b=RoomData(i)\y1
+    a+RoomData(i)\x2 : b+RoomData(i)\y2
+    a+RoomData(i)\x3 : b+RoomData(i)\y3
+    a+RoomData(i)\x4 : b+RoomData(i)\y4
+    a/4 : a=Abs(a-px) : b/4 : b=Abs(b-py)
     c=Sqr((a*a)+(b*b)) : If c<dist : room=i : dist=c : EndIf
   Next
   ProcedureReturn room
@@ -151,7 +145,7 @@ EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 98
-; FirstLine = 84
+; CursorPosition = 94
+; FirstLine = 87
 ; Folding = --
 ; EnableXP

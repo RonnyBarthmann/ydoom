@@ -7,16 +7,16 @@
   <section name="data">
     <explorer view="C:\users\Public\Application Data\PureBasic\Examples\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2018-11-23 04:37" user="knoppix" host="Microknoppix"/>
+    <lastopen date="2018-11-24 08:33" user="knoppix" host="Microknoppix"/>
   </section>
   <section name="files">
     <file name="main.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="9e7589daec8ebf3a618f6e13a055cc01"/>
+      <fingerprint md5="5f69a90a7e25433123d446469d0cfee7"/>
     </file>
     <file name="map.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="b3af39bdf60bee2cd27126939c876699"/>
+      <fingerprint md5="b852d0c934249646267483ed98459573"/>
     </file>
     <file name="math.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
@@ -28,11 +28,11 @@
     </file>
     <file name="player.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="7d774ffadae3f00e5dbeb635db2c9d39"/>
+      <fingerprint md5="35ae76e0e419818898838b05fdcd01e3"/>
     </file>
     <file name="render.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="a32015bf48cc5e6ed0304f93d075358d"/>
+      <fingerprint md5="1d7caa6a7066036d2bb0abb389ed85ec"/>
     </file>
     <file name="renderMath.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
@@ -53,6 +53,7 @@
       <outputfile value="pbdoom.exe"/>
       <options asm="1" thread="1"/>
       <debugger custom="1" type="standalone"/>
+      <watchlist>_DrawRoom()&gt;room;DrawRoom()&gt;room;RoomDraw(2)</watchlist>
     </target>
   </section>
 </project>
