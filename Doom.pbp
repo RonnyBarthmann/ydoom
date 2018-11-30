@@ -7,16 +7,16 @@
   <section name="data">
     <explorer view="C:\users\Public\Application Data\PureBasic\Examples\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2018-11-24 08:33" user="knoppix" host="Microknoppix"/>
+    <lastopen date="2018-11-30 16:12" user="knoppix" host="Microknoppix"/>
   </section>
   <section name="files">
     <file name="main.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="5f69a90a7e25433123d446469d0cfee7"/>
+      <fingerprint md5="4a9cf253fba7ebac613f51d7c93e8909"/>
     </file>
     <file name="map.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="b852d0c934249646267483ed98459573"/>
+      <fingerprint md5="984a7d46fe260f9b5008f6fa55bea460"/>
     </file>
     <file name="math.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
@@ -24,15 +24,15 @@
     </file>
     <file name="output.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="15f6ed3a8d7ec4e5d9c0f0d3cfc224f2"/>
+      <fingerprint md5="df838a975a98485628c65ab30a58a96e"/>
     </file>
     <file name="player.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="35ae76e0e419818898838b05fdcd01e3"/>
+      <fingerprint md5="a6980ed9172f6a36ddc6ec7b9c5393e4"/>
     </file>
     <file name="render.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="1d7caa6a7066036d2bb0abb389ed85ec"/>
+      <fingerprint md5="cef32bb8c4d567f80279824c2f13ca37"/>
     </file>
     <file name="renderMath.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
@@ -44,7 +44,7 @@
     </file>
     <file name="textures.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="3431d66f429c7719b392b23fe485d0d5"/>
+      <fingerprint md5="d7f9ae76d671536c356bbe41d60e3afe"/>
     </file>
   </section>
   <section name="targets">

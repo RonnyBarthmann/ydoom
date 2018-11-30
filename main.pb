@@ -9,7 +9,7 @@ Global OutputDriver = 2 ; 0 = ImageGadget
                          ; 3 = Fullscreen
                          ; 4 = FBdev ( Z:\dev\fb0 ) ( not implimented yet )
                          ; 5 = CanvasGadget
-Global DebugMode = 1
+Global DebugMode = 0
 Global RenderTex = 0
 Global RenderFailsafe = 1
 EnableExplicit
@@ -56,7 +56,7 @@ DummyTex(6,32,RGB(170,0,170),RGB(255,85,255))
 Define d.d = -45 , oy.l, ox.l, y.d, x.d
 
 InitIWAD("")
-LoadMap("map03")
+LoadMap("map04")
 Repeat
   eTime = ElapsedMilliseconds()+1000
   delay = eTime - time
@@ -129,5 +129,5 @@ ForEver
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 27
+; CursorPosition = 11
 ; EnableXP

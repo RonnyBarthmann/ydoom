@@ -107,18 +107,60 @@ Procedure getNearestRoom(init)
   ProcedureReturn room
 EndProcedure
 
+Procedure _DrawRoomSide(x1.d,y1.d,x2.d,y2.d,h.d,z.d,left.d,right.d,upper.d,lower.d,leTex,riTex,upTex,loTex)
+  Define tempX.d,tempY.d,tempH.d
+  If left = 100
+    DrawWallPOV(x1,y1,x2,y2,h,z,leTex)
+    ProcedureReturn
+  ElseIf left
+    tempX = ((x1*(100-left))+(x2*left))/100
+    tempY = ((y1*(100-left))+(y2*left))/100
+    DrawWallPOV(x1,y1,tempX,tempY,h,z,leTex)
+    x1 = tempX
+    y1 = tempY
+  EndIf
+  If right = 100
+    DrawWallPOV(x1,y1,x2,y2,h,z,riTex)
+    ProcedureReturn
+  ElseIf right
+    tempX = ((x1*right)+(x2*(100-right)))/100
+    tempY = ((y1*right)+(y2*(100-right)))/100
+    DrawWallPOV(tempX,tempY,x2,y2,h,z,riTex)
+    x2 = tempX
+    y2 = tempY
+  EndIf
+  If upper = 100
+    DrawWallPOV(x1,y1,x2,y2,h,z,upTex)
+    ProcedureReturn
+  ElseIf upper
+    tempH = (h*upper)/100
+    DrawWallPOV(x1,y1,x2,y2,tempH,z-h+tempH,upTex)
+    h - tempH
+  EndIf
+  If lower = 100
+    DrawWallPOV(x1,y1,x2,y2,h,z,upTex)
+    ProcedureReturn
+  ElseIf upper
+    h = (h*lower)/100
+    DrawWallPOV(x1,y1,x2,y2,h,z,upTex)
+  EndIf
+EndProcedure
+
 Procedure _DrawRoom(room)
   DrawFlatPOV(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\groundY,RoomData(room)\ground\leftTex)
   DrawCellingPOV(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\groundY-RoomData(room)\height,RoomData(room)\cover\leftTex)
-  If Not RoomData(room)\back\id : DrawWallPOV(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\back\leftTex) : EndIf
-  If Not RoomData(room)\right\id : DrawWallPOV(RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\right\leftTex) : EndIf
-  If Not RoomData(room)\front\id : DrawWallPOV(RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\front\leftTex) : EndIf
-  If Not RoomData(room)\left\id : DrawWallPOV(RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\left\leftTex) : EndIf
+  If RoomData(room)\back\id : _DrawRoomSide(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\back\leftP,RoomData(room)\back\rightP,RoomData(room)\back\upperP,RoomData(room)\back\lowerP,RoomData(room)\back\leftTex,RoomData(room)\back\rightTex,RoomData(room)\back\upperTex,RoomData(room)\back\lowerTex)
+    Else : DrawWallPOV(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\back\leftTex) : EndIf
+  If RoomData(room)\right\id : _DrawRoomSide(RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\right\leftP,RoomData(room)\right\rightP,RoomData(room)\right\upperP,RoomData(room)\right\lowerP,RoomData(room)\right\leftTex,RoomData(room)\right\rightTex,RoomData(room)\right\upperTex,RoomData(room)\right\lowerTex)
+    Else : DrawWallPOV(RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\right\leftTex) : EndIf
+  If RoomData(room)\front\id : _DrawRoomSide(RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\front\leftP,RoomData(room)\front\rightP,RoomData(room)\front\upperP,RoomData(room)\front\lowerP,RoomData(room)\front\leftTex,RoomData(room)\front\rightTex,RoomData(room)\front\upperTex,RoomData(room)\front\lowerTex)
+    Else : DrawWallPOV(RoomData(room)\x3,RoomData(room)\y3,RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\front\leftTex) : EndIf
+  If RoomData(room)\left\id : _DrawRoomSide(RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\left\leftP,RoomData(room)\left\rightP,RoomData(room)\left\upperP,RoomData(room)\left\lowerP,RoomData(room)\left\leftTex,RoomData(room)\left\rightTex,RoomData(room)\left\upperTex,RoomData(room)\left\lowerTex)
+    Else : DrawWallPOV(RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\height,RoomData(room)\groundY,RoomData(room)\left\leftTex) : EndIf
 EndProcedure
 
 Procedure DrawRoom(room)
   RoomDraw(room) = 0
-  _DrawRoom(room)
   If IfLineVisPOV(RoomData(room)\x1,RoomData(room)\y1,RoomData(room)\x2,RoomData(room)\y2)
     If RoomDraw(RoomData(room)\back\id) : DrawRoom(RoomData(room)\back\id) : EndIf : EndIf
   If IfLineVisPOV(RoomData(room)\x2,RoomData(room)\y2,RoomData(room)\x3,RoomData(room)\y3)
@@ -127,6 +169,7 @@ Procedure DrawRoom(room)
     If RoomDraw(RoomData(room)\front\id) : DrawRoom(RoomData(room)\front\id) : EndIf : EndIf
   If IfLineVisPOV(RoomData(room)\x4,RoomData(room)\y4,RoomData(room)\x1,RoomData(room)\y1)
     If RoomDraw(RoomData(room)\left\id) : DrawRoom(RoomData(room)\left\id) : EndIf : EndIf
+  _DrawRoom(room)
 EndProcedure
 
 Procedure DrawRooms(start)
@@ -145,7 +188,7 @@ EndProcedure
 
 
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 137
-; FirstLine = 90
+; CursorPosition = 171
+; FirstLine = 132
 ; Folding = --
 ; EnableXP
