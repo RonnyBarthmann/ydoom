@@ -7,44 +7,44 @@
   <section name="data">
     <explorer view="C:\users\Public\Application Data\PureBasic\Examples\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2018-11-30 16:12" user="knoppix" host="Microknoppix"/>
+    <lastopen date="2018-11-30 16:40" user="knoppix" host="Microknoppix"/>
   </section>
   <section name="files">
     <file name="main.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="4a9cf253fba7ebac613f51d7c93e8909"/>
+      <fingerprint md5="08a546a31c04c089a19a9302ec731aa3"/>
     </file>
     <file name="map.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="984a7d46fe260f9b5008f6fa55bea460"/>
+      <fingerprint md5="d4422ae97118e48dad05d5869f79fd9e"/>
     </file>
     <file name="math.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="a3f98fea1f8a6c6e9221d86c8c487478"/>
+      <fingerprint md5="499a32e3ebcab6ef94f7788dabc9d5d2"/>
     </file>
     <file name="output.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="df838a975a98485628c65ab30a58a96e"/>
+      <fingerprint md5="054adfaad574f3e2b2e598dc122ef1dd"/>
     </file>
     <file name="player.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="a6980ed9172f6a36ddc6ec7b9c5393e4"/>
+      <fingerprint md5="1e94fda495cb377ac616e84d49c36bb1"/>
     </file>
     <file name="render.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="cef32bb8c4d567f80279824c2f13ca37"/>
+      <fingerprint md5="fb36a0ce063e134f7dadc11ddce21894"/>
     </file>
     <file name="renderMath.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="73b4a01714c3d076a3acfdfd10861fa6"/>
+      <fingerprint md5="2b811ed5417785511c0fa38a86f79b0f"/>
     </file>
     <file name="test.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="6ba93fa6db892c9be8ee4dd614b80a52"/>
+      <fingerprint md5="2a190a68a4f7a7c68482c4962d69747c"/>
     </file>
     <file name="textures.pbi">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+"/>
-      <fingerprint md5="d7f9ae76d671536c356bbe41d60e3afe"/>
+      <fingerprint md5="0d465912d93b834240e0e3cfd0dc1571"/>
     </file>
   </section>
   <section name="targets">
