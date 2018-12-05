@@ -7,7 +7,7 @@
   <section name="data">
     <explorer view="Z:\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2018-12-05 19:49" user="knoppix" host="Microknoppix"/>
+    <lastopen date="2018-12-05 20:04" user="knoppix" host="Microknoppix"/>
   </section>
   <section name="files">
     <file name="main.pb">
@@ -50,7 +50,8 @@
   <section name="targets">
     <target name="Standard-Ziel" enabled="1" default="1">
       <inputfile value="main.pb"/>
-      <outputfile value="pbdoom.exe"/>
+      <outputfile value="ydoom.exe"/>
+      <executable value="ydoom.exe"/>
       <options asm="1" thread="1"/>
       <format exe="console" cpu="0"/>
       <debugger custom="1" type="standalone"/>
