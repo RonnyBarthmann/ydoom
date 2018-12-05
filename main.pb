@@ -1,4 +1,4 @@
-﻿;{  English File-Header
+;{  English File-Header
 ; 
 ; This file is part of yDOOM.
 ; 
@@ -35,6 +35,13 @@
 ; erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
 ; 
 ;}
+
+CompilerIf #PB_Compiler_OS = #PB_OS_Linux
+  CompilerWarning "Linux is only limited supported"
+CompilerEndIf
+CompilerIf #PB_Compiler_OS = #PB_OS_MacOS
+  CompilerError "MacOS is not supported"
+CompilerEndIf
 
 Global width = 640
 Global height = 400
@@ -82,6 +89,7 @@ Define eTime, time, delay
 If Not InitOutput(OutputDriver,#DOOM_OutputFeature_Resizable)
   End
 EndIf
+
 
 DummyTex(0,32,RGB(85,85,85),RGB(170,170,170))
 DummyTex(1,32,RGB(0,0,170),RGB(85,85,255))
@@ -165,9 +173,8 @@ Repeat
   OutputStuff(OutputDriver)
 ForEver
 
-
 ; IDE Options = PureBasic 5.62 (Windows - x86)
-; CursorPosition = 43
-; FirstLine = 21
+; CursorPosition = 104
+; FirstLine = 50
 ; Folding = -
 ; EnableXP
